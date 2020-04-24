@@ -6,16 +6,74 @@
     
     <link rel="stylesheet" href="./style.css" />
 
-    <title>Document</title>
+    <title>Code Quiz</title>
 </head>
 
 <body>
+    <header>
+    <!-- Display high score and timer on top left and right corners respectively -->
+        <div id="scoreDisplay"><a>View High Scores</a></div>
+        <div id="timerDisplay">Timer: <span id="time">0</span></div>
+    </header>
 
+    <main> 
+    <div id="container">
+        <h1>Welcome to the Code Quiz!</h1>
+        <p>Try answering the following code-related questions within the time limit. You have 75 seconds to complete the quiz.</p> 
+        <p> Don't forget: For each incorrect answer, you will be penalized 10 seconds from the timer. If the timer hits 0, it's game over!</p>
+        <p><strong>Ready to test your coding knowledge? Let's get started!</strong></p>
+        <br>
+        <button id="startBtn">Start Quiz</button>
+    </div>
 
+        <!-- QUIZ CONTAINER -->
+        <div id="codeQuiz" style="display: none"> 
+            <div id="quizQuestions"></div>
+                    <div>
+                        <ul id="answerChoices">
+                            <div id="answerChoice" id="A" onclick="checkAnswer('A')"></div>
+                            <div id="answerChoice" id="B" onclick="checkAnswer('B')"></div>
+                            <div id="answerChoice" id="C" onclick="checkAnswer('C')"></div>
+                        </ul>
+                    </div>
+                </form>
+        </div>
+ 
 
+        <!-- Timer Div -->
+            <div id="quizTimer">
+                <div id="countdownTimer"></div>
+                    <div id="time"></div>
+                        <div id="userProgress"></div>
+            </div>
 
+        <!-- Results & Submit Page -->
+        <div id="quizResults">
+            <!-- use JS to add "All done!"" heading" -->
+            <!-- use JS to ask user to "Enter initials: "
+            <form>
+            <span id="userScore">
+            <br>
+            use JS to ask user to "Enter initials: " -->
+            <!-- <input type="text" id="initials" />
+            <button id="submit"> Submit </button>
+            </form>
+            </span> -->
+        </div>
 
+        <!-- High Scores Page -->
+        <div id="highScores">
+            <!-- Add Highscores heading -->
+            <ol id="highScoresList"></ol>
+            <!-- Include a "Go Back" reset button and a "Clear Highscores" clear button -->
+            <!-- <button id="resetBtn">Go Back</button>
+            <button id="clearBtn">Clear High Scores</button> -->
+        </div>
+
+    </main>
+
+    <script src="./questions.js"></script>
     <script src="./script.js"></script>
 
 </body>
-</html>
+</html> 
