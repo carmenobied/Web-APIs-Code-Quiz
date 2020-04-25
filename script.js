@@ -1,4 +1,3 @@
-// KEY STEPS:
 // 1. When user clicks the start button, then a timer starts and I am presented with a question
 
     // KEY VARIABLES: Declare variables 
@@ -8,49 +7,48 @@
         var quizContainer = document.querySelector("#quizContainer");
         var quizQuestions = document.getElementById("quizQuestions");
         var answerChoices = document.getElementById("answerChoices");
-        // var answerChoiceA = document.getElementById("A");
-        // var answerChoiceB = document.getElementById("B");
-        // var answerChoiceC = document.getElementById("B");
-        // var correctChoice = document.getElementById("correctChoice");
+        var questionHeading = document.getElementById("questionHeading");
+        var answerChoiceA = document.getElementById("answerChoiceA");
+        var answerChoiceB = document.getElementById("answerChoiceB");
+        var answerChoiceC = document.getElementById("answerChoiceC");
+        var answerChoiceC = document.getElementById("answerChoiceD");
+        // var correctAnswer = document.getElementById("correctAnswer");
         // var scoreDisplay = document.getElementById("userScore");
         // var finalTimeDisplay = document.getElementById("quizTimeFinal");
         // var quizResults = document.getElementById("#quizResults");
         // var submit = document.getElementById("#submit");
         
     // QUESTIONS ARRAY:
-    // Store questions and choices as an array of objects in a separate file named questions.js
     
-    // let questionOnePage = document.getElementById('question-1');
-
     var questionsArray = [
     {
         question: "Question 1: ?",
         imageSrc: "",
         answerChoice: ["", "", "", ""],
-        answer: 1
+        correctAnswer: 1
     }, 
     {
         question: "Question 2: ?",
         imageSrc: "",
         answerChoice: ["", "", "", ""],
-        answer: 3
+        correctAnswer: 3
     },
     {
         question: "Question 3: ?",
         imageSrc: "",
         answerChoice: ["", "", "", ""],
-        answer: 3
+        correctAnswer: 3
     }, 
     {
         question: "Question 4: ?",
         imageSrc: "",
         answerChoice: ["", "", "", ""],
-        answer: 1
+        correctAnswer: 1
     },
     {
         question: "Question 5: ?",
         answerChoice: ["", "", "", ""],
-        answer: 0
+        correctAnswer: 0
     }  
 ];
 
@@ -79,27 +77,27 @@
           }
         }, 1000);
       }
-      setCountdownTimer();
 
     // START CODE QUIZ FUNCTION: Add start quiz function //
       function startCodeQuiz() {
             homeContainer.style.display ="none";
             quizContainer.style.display = "block";
         }
-        // setQuizQuestions();
         setCountdownTimer();
         startCodeQuiz();
+        setQuizQuestions();
     },
 
     // QUESTIONS FUNCTION: Set questions display function //
-        // function setQuizQuestions() {
-        //     for (let i = 0; i < answerChoices.length; i++) {
-        //         questionHeading.textContent = answerChoices.question; 
-        //         answerChoiceA.textContent = answerChoices[i].choices[0]; 
-        //         answerChoiceB.textContent = answerChoices[i].choices[1]; 
-        //         answerChoiceC.textContent = answerChoices[i].choices[2]; 
-        //     }
-        // }
+    function setQuizQuestions() {
+        for (let i = 0; i < questionsArray.length; i++) {
+            questionHeading.textContent = questionsArray.question; 
+            answerChoiceA.textContent = questionsArray[i].answerChoice[0]; 
+            answerChoiceB.textContent = questionsArray[i].answerChoice[1]; 
+            answerChoiceC.textContent = questionsArray[i].answerChoice[2]; 
+            answerChoiceD.textContent = questionsArray[i].answerChoice[3]; 
+        }
+    })
 
 // 2. When user answers a question: then user is presented with another question
     // start quiz questions and display multiple-choice answers for user to choose from -> store answers
@@ -156,10 +154,10 @@
             function refreshQuiz(){
                 window.location.reload();
                 console.log(refreshQuiz);
-               },
+               }
             // Use function with location.reload() and localStorage.clear() methods to clear high scores
             function clearQuiz(){
                 window.location.reload();
                 localStorage.clear();
                 console.log(clearQuiz);
-                })
+                }
