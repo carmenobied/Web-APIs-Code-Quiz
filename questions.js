@@ -1,26 +1,28 @@
 // Questions array for code quiz
 var quizQuestions = [
     {
-      question : "Question 1: HTML related",
+      question : "Question 1: Javascript-related",
       imageSrc : "",
-      answerChoiceA : "",
-      answerChoiceB : "",
-      answerChoiceC : "",
-      correctChoice : "B"
+      answerChoices: [{text: ""}, 
+                      {text: ""}, 
+                      {text: ""}, 
+                      {text: ""}],
+      correctChoice : "",
     },{
-      question : "Question 2: CSS related",
+      question : "Question 2: Javascript-related",
       imageSrc : "",
-      answerChoiceA : "",
-      answerChoiceB : "",
-      answerChoiceC : "",
-      correctChoice : "C"
+      answerChoices: [{text: ""}, 
+                      {text: ""}, 
+                      {text: ""}, 
+                      {text: ""}],
+      correctChoice : "",
     },{
-      question : "Question 3: JavaScript related",
+      question : "Question 3: Javascript-related",
       imageSrc : "",
-      answerChoiceA : "",
-      answerChoiceB : "",
-      answerChoiceC : "",
-      correctChoice : "A"
+      answerChoices: [{text: ""}, 
+                      {text: ""}, 
+                      {text: ""}, 
+                      {text: ""}],
+      correctChoice : "",
      }
 ];
-
