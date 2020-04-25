@@ -16,8 +16,8 @@
         <div id="timerDisplay">Timer: <span id="time">0</span></div>
     </header>
 
-    <main> 
-    <div id="container">
+    <container>
+    <div id="homeContainer">
         <h1>Welcome to the Code Quiz!</h1>
         <p>Try answering the following code-related questions within the time limit. You have 75 seconds to complete the quiz.</p> 
         <p> Don't forget: For each incorrect answer, you will be penalized 10 seconds from the timer. If the timer hits 0, it's game over!</p>
@@ -25,52 +25,52 @@
         <br>
         <button id="startBtn">Start Quiz</button>
     </div>
+    </container>
 
         <!-- QUIZ CONTAINER -->
-        <div id="codeQuiz" style="display: none"> 
+        <section id="quizContainer" style="display: none"> 
             <div id="quizQuestions"></div>
-                    <div>
-                        <ul id="answerChoices">
-                            <div id="answerChoice" id="A" onclick="checkAnswer('A')"></div>
-                            <div id="answerChoice" id="B" onclick="checkAnswer('B')"></div>
-                            <div id="answerChoice" id="C" onclick="checkAnswer('C')"></div>
-                        </ul>
+                    <div id="answerChoices">
+                        <button id="answerChoices" id="A" onclick="checkAnswer('A')"></button>
+                        <button id="answerChoices" id="B" onclick="checkAnswer('B')"></button>
+                        <button id="answerChoices" id="C" onclick="checkAnswer('C')"></button>
                     </div>
-                </form>
-        </div>
+            </div>
  
 
-        <!-- Timer Div -->
+            <!-- Timer Div -->
             <div id="quizTimer">
                 <div id="countdownTimer"></div>
                     <div id="time"></div>
                         <div id="userProgress"></div>
             </div>
+        </section>
 
         <!-- Results & Submit Page -->
         <div id="quizResults">
             <!-- use JS to add "All done!"" heading" -->
-            <!-- use JS to ask user to "Enter initials: "
-            <form>
-            <span id="userScore">
-            <br>
-            use JS to ask user to "Enter initials: " -->
-            <!-- <input type="text" id="initials" />
+            <!-- use JS to ask user to "Enter initials: " -->
+            <form> <span id="userScore" style="display: none;"> <br>
+            <!-- use JS to ask user to "Enter initials: " -->
+            <input type="text" id="userInitials" placeholder="Enter your name">
+            <ul id="clasification" style="list-style: none;"></ul>
             <button id="submit"> Submit </button>
             </form>
-            </span> -->
+            </span>
         </div>
 
         <!-- High Scores Page -->
         <div id="highScores">
             <!-- Add Highscores heading -->
             <ol id="highScoresList"></ol>
+            <p id="score">score</p>
+            <p id="quizTimeComplete">time</p>
             <!-- Include a "Go Back" reset button and a "Clear Highscores" clear button -->
             <!-- <button id="resetBtn">Go Back</button>
             <button id="clearBtn">Clear High Scores</button> -->
+            <button type="button" onClick="refreshPage()">Go Back</button>
+            <button type="button" onClick="clearPage()">Clear High Scores</button>     
         </div>
-
-    </main>
 
     <script src="./questions.js"></script>
     <script src="./script.js"></script>
