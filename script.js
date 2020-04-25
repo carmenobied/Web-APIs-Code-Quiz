@@ -4,10 +4,10 @@
         var startBtn = document.getElementById("startBtn");
         var countdownTimer = document.getElementById("countdownTimer");
         var homeContainer =  document.getElementById("homeContainer");
-        var quizContainer = document.querySelector("#quizContainer");
+        var quizContainer = document.getElementById("quizContainer");
         var quizQuestions = document.getElementById("quizQuestions");
-        var answerChoices = document.getElementById("answerChoices");
         var questionHeading = document.getElementById("questionHeading");
+        var answerChoice = document.getElementById("answerChoice");
         var answerChoiceA = document.getElementById("answerChoiceA");
         var answerChoiceB = document.getElementById("answerChoiceB");
         var answerChoiceC = document.getElementById("answerChoiceC");
