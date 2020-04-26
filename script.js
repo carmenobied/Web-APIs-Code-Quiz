@@ -191,24 +191,6 @@ answerChoiceC.addEventListener('click', function(event) {
         console.log(score);
         });
 
-    // answerChoiceD.addEventListener('click', function(event) {
-    //     event.stopPropagation();
-    //     let correctChoice = "";
-    //     correctChoice = questionsArray[i].answerChoice;
-    //     console.log(correctChoice);
-    //     if (i < questionsArray.length -1) {
-    //         i++
-    //     }
-    //     if (event.target.textContent === correctChoice) { 
-    //         alert("Correct! Nailed it!");
-    //         setQuizQuestions();
-    //         score++;
-    //     } else {
-    //         setQuizQuestions();
-    //         secondsRemaining -= 5;
-    //         alert("Incorrect! Better luck in the next one!");
-    //     }
-
 // Highscores page 
 var highscoresContainer = document.getElementById ("highScoresContainer");
 var highscoresHeading = document.getElementById ("highscoresHeading");
