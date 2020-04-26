@@ -13,13 +13,11 @@
     var answerChoiceC = document.getElementById("answerChoiceC");
     var answerChoiceD = document.getElementById("answerChoiceD");
     var correctAnswer = document.getElementById("correctAnswer");
-    // var scoreDisplay = document.getElementById("userScore");
-    // var scoreContainerEl = document.getElementById("ScoreContainer");
-    // var finalTimeDisplay = document.getElementById("quizFinalTime");
-    // var quizResults = document.getElementById("#quizResults");
-    // var submit = document.getElementById("#submit");
-    // let highScoreInput = document.getElementById("high-score-input");
-    var enterHighScore = document.getElementById("enterHighScore");
+    var scoreDisplay = document.getElementById("userScore");
+    var scoreContainerEl = document.getElementById("ScoreContainer");
+    var finalTimeDisplay = document.getElementById("quizFinalTime");
+    var quizResults = document.getElementById("#quizResults");
+    var submit = document.getElementById("#submit");
     var userName = document.getElementById("userName");
     var userScore = document.getElementById("userScore");
     var displayHighScores = document.getElementById("displayHighScores");
@@ -31,30 +29,30 @@ var questionsArray = [
     question: "Question: What is the HTML tag under which you can write the JavaScript code?",
     imageSrc: "",
     answerChoice: ["A) <javascript>", "B) <scripted>", "C) <script>", "D) <js>"],
-    correctAnswer: 2
+    correctAnswer: "C) <script>"
 }, 
 {
     question: "Question: What are variables used for in JavaScript Programs?",
     imageSrc: "",
     answerChoice: ["A) Storing numbers, dates, or other values", "B)  None of the above", "C) Varying randomly", "D) Causing high-school algebra flashbacks"],
-    correctAnswer: 0
+    correctAnswer: "A) Storing numbers, dates, or other values"
 },
 {
     question: "Question: Which method adds a new item to the end of an array and returns the new length?",
     imageSrc: "",
     answerChoice: ["A) push()", "B) return() ", "C) pop() ", "D) shift()"],
-    correctAnswer: 0
+    correctAnswer: "A) push()"
 }, 
 {
     question: "Question: Which of the following can't be done with client-side JavaScript?",
     imageSrc: "",
     answerChoice: ["A) Sending a form's contents by email", "B) Validating a form", "C) Storing the form's contents to a database file on the server", "D) None of the above"],
-    correctAnswer: 3
+    correctAnswer: "C) Storing the form's contents to a database file on the server"
 },
 {
-    question: "Question: Which of the following are capabilities of functions in JavaScript??",
+    question: "Question: Which of the following are capabilities of functions in JavaScript?",
     answerChoice: ["A) Return a value", "B) Accept parameters", "C) Accept parameters and Return a value", "D) All of the above"],
-    correctAnswer: 1
+    correctAnswer: "B) Accept parameters"
 }];
 
 
@@ -112,20 +110,20 @@ function setQuizQuestions() {
 
 answerChoiceA.addEventListener('click', function(event) {
 event.stopPropagation();
-let correctChoice = "";
-correctChoice = questionsArray[i].answer;
-alert(correctChoice);
+let correctAnswer = "";
+correctChoice = questionsArray[i].correctAnswer;
+console.log(correctChoice);
 if (i < questionsArray.length -1) {
     i++
 }
-if (event.target.textContent === correctChoice) { 
+if (event.target.textContent === correctAnswer) { 
     alert("Correct! Nailed it!");     
     setQuizQuestions();
     score++;
 } else {
     setQuizQuestions();
     secondsRemaining -= 5;
-    alert("Incorrect! Better luck in the next one!");
+    console.log("Incorrect! Better luck in the next one!");
 }
 console.log(score);
 
@@ -134,19 +132,19 @@ console.log(score);
 answerChoiceB.addEventListener('click', function(event) {
 event.stopPropagation();
 let correctChoice = "";
-correctChoice = questionsArray[i].answerChoice;
+correctChoice = questionsArray[i].correctAnswer;
 console.log(correctChoice);
 if (i < questionsArray.length -1) {
     i++
 }
-if (event.target.textContent === correctChoice) { 
+if (event.target.textContent === correctAnswer) { 
     console.log("Correct! Nailed it!");
     setQuizQuestions();
     score++;
 } else {
     setQuizQuestions();
     secondsRemaining -= 5;
-    alert("Incorrect! Better luck in the next one!");
+    console.log("Incorrect! Better luck in the next one!");
 }
 console.log(score);
 });
@@ -154,19 +152,19 @@ console.log(score);
 answerChoiceC.addEventListener('click', function(event) {
     event.stopPropagation();
     let correctChoice = "";
-    correctChoice = questionsArray[i].answerChoice;
+    correctChoice = questionsArray[i].correctAnswer;
     console.log(correctChoice);
     if (i < questionsArray.length -1) {
         i++
     }
-    if (event.target.textContent === correctChoice) { 
+    if (event.target.textContent === correctAnswer) { 
         alert("Correct! Nailed it!");
         setQuizQuestions();
         score++;
     } else {
         setQuizQuestions();
         secondsRemaining -= 5;
-        alert("Incorrect! Better luck in the next one!");
+        console.log("Incorrect! Better luck in the next one!");
     }
     console.log(score);
     });
@@ -174,19 +172,19 @@ answerChoiceC.addEventListener('click', function(event) {
     answerChoiceD.addEventListener('click', function(event) {
         event.stopPropagation();
         let correctChoice = "";
-        correctChoice = questionsArray[i].answerChoice;
+        correctChoice = questionsArray[i].correctAnswer.value;
         console.log(correctChoice);
         if (i < questionsArray.length -1) {
             i++
         }
-        if (event.target.textContent === correctChoice) { 
-            console.log("Correct! Nailed it!");
+        if (event.target.textContent === correctAnswer) { 
             setQuizQuestions();
             score++;
+            console.log("Correct! Nailed it!");
         } else {
             setQuizQuestions();
             secondsRemaining -= 5;
-            alert("Incorrect! Better luck in the next one!");
+            console.log("Incorrect! Better luck in the next one!");
         }
         console.log(score);
         });
