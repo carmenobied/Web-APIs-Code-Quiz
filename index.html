@@ -12,12 +12,13 @@
 <body>
     <header>
     <!-- Display high score and timer on top left and right corners respectively -->
-        <div id="scoreDisplay"><a>View High Scores</a></div>
-        <div id="timerDisplay">Timer: <span id="time">0</span></div>
+        <div id="displayHighScores"><a>View High Scores</a></div>
+        <div>Timer: <span id="countdownTimer"> 0</span></div>
     </header>
 
+    <!-- Home Container with quiz rules and Start button -->
     <container>
-    <div id="homeContainer">
+    <div id="homeContainer" class="none">
         <h1>Welcome to the Code Quiz!</h1>
         <p>Try answering the following code-related questions within the time limit. You have 75 seconds to complete the quiz.</p> 
         <p> Don't forget: For each incorrect answer, you will be penalized 10 seconds from the timer. If the timer hits 0, it's game over!</p>
@@ -29,49 +30,41 @@
 
         <!-- QUIZ CONTAINER -->
         <section id="quizContainer" style="display: none"> 
-            <div id="quizQuestions"></div>
-                    <div id="answerChoices">
-                        <button id="answerChoices" id="A" onclick="checkAnswer('A')"></button>
-                        <button id="answerChoices" id="B" onclick="checkAnswer('B')"></button>
-                        <button id="answerChoices" id="C" onclick="checkAnswer('C')"></button>
+            <h2 id="questionHeading"></h2>
+            <!-- <div id="answerChoices"> -->
+                <ul>
+                    <div id="choices">
+                        <button id="answerChoiceA"></button>
                     </div>
-            </div>
- 
-
-            <!-- Timer Div -->
-            <div id="quizTimer">
-                <div id="countdownTimer"></div>
-                    <div id="time"></div>
-                        <div id="userProgress"></div>
-            </div>
+                    <div>
+                        <button id="answerChoiceB"></button>
+                    </div>
+                    <div>
+                        <button id="answerChoiceC"></button>
+                    </div>
+                    <div>
+                        <button id="answerChoiceD"></button>
+                    </div>
+                </ul>
         </section>
+<!-- High Scores container -->
+        <div style="display: none" id = "highScores">
+                <h3 id = "highscoresHeading"></h3>
+          </div>
 
-        <!-- Results & Submit Page -->
-        <div id="quizResults">
-            <!-- use JS to add "All done!"" heading" -->
-            <!-- use JS to ask user to "Enter initials: " -->
-            <form> <span id="userScore" style="display: none;"> <br>
-            <input type="text" id="userInitials" placeholder="Enter your name">
-            <button id="submit"> Submit </button>
-            </form>
-            </span>
+        <div style="display: none" id="enterHighScore">
+            <h1>All Done!</h1>
+            <h4 id="userScore"></h4>
+            <div class="input-group">
+                <input id="userName" type="text" placeholder="Your name" aria-label="Your name" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                <button type="button" id="button-addon2">Add Name</button>
+                </div>
+            </div>
         </div>
 
-        <!-- High Scores Page -->
-        <div id="highScores">
-            <!-- Add Highscores heading -->
-            <ol id="highScoresList"></ol>
-            <p id="score">score</p>
-            <p id="quizTimeComplete">time</p>
-            <!-- Include a "Go Back" reset button and a "Clear Highscores" clear button -->
-            <!-- <button id="resetBtn">Go Back</button>
-            <button id="clearBtn">Clear High Scores</button> -->
-            <button type="button" onClick="refreshPage()">Go Back</button>
-            <button type="button" onClick="clearPage()">Clear High Scores</button>     
-        </div>
 
-    <script src="./questions.js"></script>
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html> 
