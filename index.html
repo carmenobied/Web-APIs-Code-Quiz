@@ -29,7 +29,7 @@
     </container>
 
         <!-- QUIZ CONTAINER -->
-        <section id="quizContainer" style="display: none"> 
+        <div id="quizContainer" style="display: none"> 
             <h2 id="questionHeading"></h2>
             <!-- <div id="answerChoices"> -->
                 <ul>
@@ -46,13 +46,14 @@
                         <button id="answerChoiceD"></button>
                     </div>
                 </ul>
-        </section>
+            </div>
+
 <!-- High Scores container -->
-        <div style="display: none" id = "highScores">
+        <div id = "highScores" style="display: none">
                 <h3 id = "highscoresHeading"></h3>
           </div>
 
-        <div style="display: none" id="enterHighScore">
+        <div id="enterHighScore" style="display: none">
             <h1>All Done!</h1>
             <h4 id="userScore"></h4>
             <div class="input-group">
@@ -62,7 +63,6 @@
                 </div>
             </div>
         </div>
-
 
     <script src="script.js"></script>
 
