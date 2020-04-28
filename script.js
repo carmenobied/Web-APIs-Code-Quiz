@@ -1,6 +1,6 @@
-// 1. When user clicks the start button, then a timer starts and I am presented with a question
+// When user clicks the start button, then a timer starts and user is presented with a question
 
-    // KEY VARIABLES: Declare global variables 
+    // Declare global variables 
     var startBtn = document.getElementById("startBtn");
     var time = 75;
     var time_remaining = true;
@@ -16,7 +16,9 @@
     var correctAnswer = document.getElementById("correctAnswer");    
     var high_scores= [];
     var output="";
+    // Set score = 0 at the start of the game 
     var score = 0;
+    // question index
     let i = 0;
 
 // QUESTIONS ARRAY:
@@ -37,8 +39,8 @@ var questionsArray = [
 {
     question: "Question: Which method adds a new item to the end of an array and returns the new length?",
     imageSrc: "",
-    answerChoice: ["A) shift()", "B) return() ", "C) pop() ", "D) push()"],
-    correctAnswer: 3
+    answerChoice: ["A) shift()", "B) return() ", "C) push() ", "D) pop()"],
+    correctAnswer: 2
 }, 
 {
     question: "Question: Which of the following can't be done with client-side JavaScript?",
@@ -52,10 +54,12 @@ var questionsArray = [
     correctAnswer: 1
 }];
 
-//COUNTDOWN TIMER FUNCTION: Use function to set countdown timer, interval and clear interval. Set score = 0 at the start of the game and set time-related valiables.
+//COUNTDOWN TIMER FUNCTION: set countdown timer and interval. Set time-related valiables.
 
+//change the seconds variable every second.
 var countdownTimerInterval = setInterval(setCountdownTimer, 1000);
-    
+
+//function that changes the time var
 function setCountdownTimer() {
         if (time_start)
         time--;
@@ -63,12 +67,12 @@ function setCountdownTimer() {
         end_quiz();
         time = 0;    
         // clearInterval(countdownTimerInterval);
+        //alert user and stop quiz
         }
         document.getElementById("timer").innerHTML = time;
-        // countdownTimer.textContent = secondsRemaining + "seconds remaining";
     }
 
-// START EVENT LISTENER: Add event listeners for when user clicks Start button to start countdown timer and quiz questions. 
+// START EVENT LISTENER: When user clicks Start button, start the countdown timer and quiz questions. Add an event listener to each button.
 startBtn.addEventListener("click", function() {
     quizContainer.style.display = "block";
     homeContainer.style.display ="none";
@@ -80,8 +84,7 @@ startBtn.addEventListener("click", function() {
     time_start= true;
 });
 
-// QUESTIONS FUNCTION: Set function to display questions
-// Start display quiz questions and display multiple-choice answers for user to choose from 
+// QUESTIONS FUNCTION: display questions and multiple-choice answers
 
 function setQuizQuestions() {
         questionHeading.textContent = questionsArray[i].question;
@@ -91,33 +94,42 @@ function setQuizQuestions() {
         answerChoiceD.textContent = questionsArray[i].answerChoice[3]; 
         };
 
-// 2. When user answers a question: then user is presented with another question
-// Add event listener to call this function to go to next question
-// Add a function to direct the user to the next question using event delegation (event.target.value) and if else statements
-// Apply "Setters and Getters" methods
+// When user answers a question: then user is presented with another question
 
-// 3. When user answers a question correctly, increase the score
-// Alert/Display message to user stating if theyir answer is correct or incorrect
 // Store user answer choices. Clear elements and update score count.
 
+// Change to next question
 answerChoiceA.addEventListener('click', function(event) {
         event.stopPropagation();
         correctAnswer= questionsArray[i].correctAnswer;
         console.log("correctAnswer " + correctAnswer);
         // check answer
         if (0 === correctAnswer) { 
-            // correct + points and alert
-            alert("Correct! Nailed it!"); 
+            // display message to user for 1  second stating if the answer is correct or incorrect
+            document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+            setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
+            // when user answers a question correctly, increase the score
             score++;    
+            // display updated score progress
+            document.getElementById("score").innerHTML = score;
         } else {
             time_remaining -= 5;
-            // incorrect - time and alert
-            alert("Incorrect! Better luck in the next one!");
+            // when user answers a question inccorrectly, subtract from the time
+            document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+            setTimeout(function() {
+                document.getElementById("AnswerResponse").innerHTML = "";
+                    },
+                    1000
+                );
         }
-        i++ 
         if (i >= questionsArray.length -1) {
         end_quiz();
         } else {
+            i++ 
             setQuizQuestions();
         };
     });
@@ -127,17 +139,28 @@ answerChoiceB.addEventListener('click', function(event) {
     correctAnswer = questionsArray[i].correctAnswer;
     console.log(correctAnswer);
         if (1 === correctAnswer) { 
-            alert("Correct! Nailed it!");
+            document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+            setTimeout(function() {
+                document.getElementById("AnswerResponse").innerHTML = "";
+                    },
+                    1000
+                );
             score++;
+            document.getElementById("score").innerHTML = score;
         } else {
             time_remaining -= 5;
-            alert("Incorrect! Better luck in the next one!");
+            document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+            setTimeout(function() {
+                document.getElementById("AnswerResponse").innerHTML = "";
+                    },
+                    1000
+                );
         }
-        i++ 
         if (i >= questionsArray.length -1) {
         end_quiz();
         } else {
-            setQuizQuestions();
+         i++ 
+        setQuizQuestions();
         };
     });
 
@@ -146,16 +169,27 @@ answerChoiceC.addEventListener('click', function(event) {
     correctAnswer = questionsArray[i].correctAnswer;
     console.log(correctAnswer);
     if (2 === correctAnswer) { 
-        alert("Correct! Nailed it!");
+        document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
         score++;
+        document.getElementById("score").innerHTML = score;
     } else {
         time_remaining -= 5;
-        alert("Incorrect! Better luck in the next one!");
+        document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
     }
-    i++ 
     if (i >= questionsArray.length -1) {
     end_quiz();
     } else {
+        i++ 
         setQuizQuestions();
     };
     });
@@ -165,28 +199,30 @@ answerChoiceD.addEventListener('click', function(event) {
     correctAnswer= questionsArray[i].correctAnswer.value;
     console.log(correctAnswer);
     if (3 === correctAnswer) { 
-        alert("Correct! Nailed it!");
+        document.getElementById("AnswerResponse").innerHTML = "Correct! Nailed it!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
         score++;
+        document.getElementById("score").innerHTML = score;
     } else {
         time_remaining -= 5;
-        alert("Incorrect! Better luck in the next one!");
+        document.getElementById("AnswerResponse").innerHTML = "Incorrect! Better luck in the next one!";
+        setTimeout(function() {
+            document.getElementById("AnswerResponse").innerHTML = "";
+                },
+                1000
+            );
     }
-    i++ 
     if (i >= questionsArray.length -1) {
        end_quiz();
     } else {
+        i++ 
         setQuizQuestions();
     };
 });
-
-// function end_quiz(){
-//     if(setCountdownTimer){
-//         i++;
-//     }
-//     if(i>=5){
-//      end_quiz();
-//     }else{
-//     }
 
         //end quiz
         function end_quiz(){
@@ -198,21 +234,19 @@ answerChoiceD.addEventListener('click', function(event) {
             document.getElementById("end_score").innerHTML= score;
             }
 
-        localStorage.setItem("score",JSON.stringify(AnswerResponse));
-        // localStorage.setItem("name", JSON.stringify(initials));
+        //submit score and initals
+            function submit_score() {
+             high_scores.push(document.getElementById("initials").value + " " + score);
+             view_high_scores();
+            }
+
+        // localStorage.setItem("score",JSON.stringify(AnswerResponse));
+        // localStorage.setItem("initials", JSON.stringify(initials));
         
         function view_high_scores(){
         
+        // changing the screen output
             document.getElementById("quizContainer").style.display="none";
-            document.getElementById("AnswerResponse").innerHTML="";
-
-            //submit score and initals
-        
-            high_scores.push(document.getElementById("initials").value + " " + score);
-        //	console.log(document.getElementById("initals").value + " " + score);
-        
-            score=0;
-        
             document.getElementById("game_over").style.display= "none";
             document.getElementById("high_scores_page").style.display="block";
         
@@ -220,27 +254,29 @@ answerChoiceD.addEventListener('click', function(event) {
             for(let k=0; k<high_scores.length; k++){
                  output = output + "  " + high_scores[k];
             }
-        
-            document.getElementById("high_scores").innerHTML= output ;
+            document.getElementById("high_scores").innerHTML= output;                
              clear_up();
         }
-        
+
+        // refresh the site to the home container page
         function go_home(){	
                 document.getElementById("high_scores_page").style.display= "none";
                 document.getElementById("homeContainer").style.display= "block";
                 clear_up();
         }
         
+        // clear the highscore
         function clear_hs(){
+            high_scores = [];
+            // high_scores.splice(0, high_scores.length);
+          }
         
-            high_scores.splice(0, high_scores.length);
-        }
-        
+        // refresh the site 
         function clear_up(){
         
         time=75;
         time_remaining=true;
-        time_start= false;
+        time_start=false;
         i=0;
         score=0;
         }
