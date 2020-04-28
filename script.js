@@ -2,31 +2,25 @@
 
     // KEY VARIABLES: Declare global variables 
     var startBtn = document.getElementById("startBtn");
-    var timeStart = false;
-    var secondsRemaining = true;
+    var time = 75;
+    var time_remaining = true;
+    var time_start= false;
     var countdownTimer = document.getElementById("countdownTimer");
     var homeContainer =  document.getElementById("homeContainer");
     var quizContainer = document.getElementById("quizContainer");
     var questionHeading = document.getElementById("questionHeading");
-    var choices = document.getElementById("choices");
-    var answerChoice = document.getElementById("answerChoice");
     var answerChoiceA = document.getElementById("answerChoiceA");
     var answerChoiceB = document.getElementById("answerChoiceB");
     var answerChoiceC = document.getElementById("answerChoiceC");
     var answerChoiceD = document.getElementById("answerChoiceD");
-    var correctAnswer = document.getElementById("correctAnswer");
-    var scoreDisplay = document.getElementById("userScore");
-    var scoreContainerEl = document.getElementById("ScoreContainer");
-    var finalTimeDisplay = document.getElementById("quizFinalTime");
-    var quizResults = document.getElementById("quizResults");
-    var submit = document.getElementById("submit");
-    var userName = document.getElementById("userName");
-    var userScore = document.getElementById("userScore");
-    var displayHighScores = document.getElementById("displayHighScores");
-    
+    var correctAnswer = document.getElementById("correctAnswer");    
+    var high_scores= [];
+    var output="";
+    var score = 0;
+    let i = 0;
+
 // QUESTIONS ARRAY:
 
-var question_number=0;
 var questionsArray = [
 {
     question: "Question: What is the HTML tag under which you can write the JavaScript code?",
@@ -37,14 +31,14 @@ var questionsArray = [
 {
     question: "Question: What are variables used for in JavaScript Programs?",
     imageSrc: "",
-    answerChoice: ["A) Storing numbers, dates, or other values", "B)  None of the above", "C) Varying randomly", "D) Causing high-school algebra flashbacks"],
+    answerChoice: ["A) Storing numbers, dates, or other values", "B) Varying randomly", "D) Causing high-school algebra flashbacks", "D) None of the above"],
     correctAnswer: 0
 },
 {
     question: "Question: Which method adds a new item to the end of an array and returns the new length?",
     imageSrc: "",
-    answerChoice: ["A) push()", "B) return() ", "C) pop() ", "D) shift()"],
-    correctAnswer: 0
+    answerChoice: ["A) shift()", "B) return() ", "C) pop() ", "D) push()"],
+    correctAnswer: 3
 }, 
 {
     question: "Question: Which of the following can't be done with client-side JavaScript?",
@@ -58,41 +52,32 @@ var questionsArray = [
     correctAnswer: 1
 }];
 
-
-// SCORE: Set score = 0 at the start of the game and set time-related valiables.
-var score = 0;
-var secondsRemaining = 75;
-var followingQuestions = 0;
-var quizTotalTime;
-let i = 0;
-
-// // START EVENT LISTENER: Add event listeners for when user clicks Start button to start countdown timer and quiz. 
-
-// startBtn.addEventListener("click", function () {
-
-//COUNTDOWN TIMER FUNCTION: Use function to set countdown timer, interval and clear interval
+//COUNTDOWN TIMER FUNCTION: Use function to set countdown timer, interval and clear interval. Set score = 0 at the start of the game and set time-related valiables.
 
 var countdownTimerInterval = setInterval(setCountdownTimer, 1000);
     
 function setCountdownTimer() {
-        if (timeStart)
-        secondsRemaining--;
-        if( secondsRemaining <= 0) {
-        gameOver();
+        if (time_start)
+        time--;
+        if(time<= 0) {
+        end_quiz();
         time = 0;    
         // clearInterval(countdownTimerInterval);
         }
-        document.getElementById("countdownTimer")
+        document.getElementById("timer").innerHTML = time;
         // countdownTimer.textContent = secondsRemaining + "seconds remaining";
     }
 
 // START EVENT LISTENER: Add event listeners for when user clicks Start button to start countdown timer and quiz questions. 
-startBtn.addEventListener('click', function() {
-homeContainer.style.display ="none";
-quizContainer.style.display = "block";
-setCountdownTimer();
-setQuizQuestions();
-starTime = true;
+startBtn.addEventListener("click", function() {
+    quizContainer.style.display = "block";
+    homeContainer.style.display ="none";
+    countdownTimer.style.display= "block";
+    document.getElementById("score_keeper").style.display= "block";
+    document.getElementById("score").innerHTML = score;
+    setCountdownTimer();
+    setQuizQuestions();
+    time_start= true;
 });
 
 // QUESTIONS FUNCTION: Set function to display questions
@@ -120,15 +105,26 @@ function setQuizQuestions() {
 // answerChoiceA.addEventListener('click', checkAnswer) {
 
 // Highscores page 
-var highscoresContainer = document.getElementById ("highScoresContainer");
-var highscoresHeading = document.getElementById ("highscoresHeading");
+// var highscoresContainer = document.getElementById ("highScoresContainer");
+// var highscoresHeading = document.getElementById ("highscoresHeading");
+
 
 // quizContainer.display.style = "none";
 
-function gameOver() {
-        highscoresContainer.display.style = "block";
+function end_quiz() {
+        document.getElementById("score_keeper").style.display= "block";
+        score_keeper.display.style = "block";
         highscoresHeading.innerHTML = "Nice work! Your final score is " + score + " points! Head over to the highscores and enter your score and initials!";
 }
+
+// function end_quiz(){
+//     if(setCountdownTimer){
+//         i++;
+//     }
+//     if(i>=5){
+//      end_quiz();
+//     }else{
+//     }
 
 answerChoiceA.addEventListener('click', function(event) {
         event.stopPropagation();
@@ -140,17 +136,17 @@ answerChoiceA.addEventListener('click', function(event) {
             alert("Correct! Nailed it!"); 
             score++;    
         } else {
-            secondsRemaining -= 5;
+            time_remaining -= 5;
             // incorrect - time and alert
             alert("Incorrect! Better luck in the next one!");
         }
         i++ 
         if (i >= questionsArray.length -1) {
-           gameOver();
+        end_quiz();
         } else {
             setQuizQuestions();
         };
-});
+    });
 
 answerChoiceB.addEventListener('click', function(event) {
     event.stopPropagation();
@@ -160,12 +156,12 @@ answerChoiceB.addEventListener('click', function(event) {
             alert("Correct! Nailed it!");
             score++;
         } else {
-            secondsRemaining -= 5;
+            time_remaining -= 5;
             alert("Incorrect! Better luck in the next one!");
         }
         i++ 
         if (i >= questionsArray.length -1) {
-           gameOver();
+        end_quiz();
         } else {
             setQuizQuestions();
         };
@@ -179,32 +175,100 @@ answerChoiceC.addEventListener('click', function(event) {
         alert("Correct! Nailed it!");
         score++;
     } else {
-        secondsRemaining -= 5;
+        time_remaining -= 5;
         alert("Incorrect! Better luck in the next one!");
     }
     i++ 
     if (i >= questionsArray.length -1) {
-       gameOver();
+    end_quiz();
+    } else {
+        setQuizQuestions();
+    };
+    });
+
+answerChoiceD.addEventListener('click', function(event) {
+    event.stopPropagation();
+    correctAnswer= questionsArray[i].correctAnswer.value;
+    console.log(correctAnswer);
+    if (3 === correctAnswer) { 
+        console.log("Correct! Nailed it!");
+        score++;
+    } else {
+        time_remaining -= 5;
+        console.log("Incorrect! Better luck in the next one!");
+    }
+    i++ 
+    if (i >= questionsArray.length -1) {
+       end_quiz();
     } else {
         setQuizQuestions();
     };
 });
 
-answerChoiceD.addEventListener('click', function(event) {
-        event.stopPropagation();
-        correctAnswer= questionsArray[i].correctAnswer.value;
-        console.log(correctAnswer);
-        if (3 === correctAnswer) { 
-            console.log("Correct! Nailed it!");
-            score++;
-        } else {
-            secondsRemaining -= 5;
-            console.log("Incorrect! Better luck in the next one!");
+        
+// function end_quiz(){
+//     if(setCountdownTimer){
+//         i++;
+//     }
+//     if(i>=5){
+//      end_quiz();
+//     }else{
+//     }
+
+        //end quiz
+        function end_quiz(){
+            document.getElementById("game_over").style.display= "block";
+            document.getElementById("quizContainer").style.display="none";
+            document.getElementById("countdownTimer").style.display= "none";
+            document.getElementById("score_keeper").style.display= "none";
+            document.getElementById("AnswerResponse").innerHTML="";
+            document.getElementById("end_score").innerHTML= score;
+            }
+
+        // localStorage.setItem("score",JSON.stringify(AnswerResponse));
+        // localStorage.setItem("name", JSON.stringify(initials));
+        
+        function view_high_scores(){
+        
+            document.getElementById("quizContainer").style.display="none";
+            document.getElementById("AnswerResponse").innerHTML="";
+
+            //submit score and initals
+        
+        //	high_scores.push([document.getElementById("initals").value, score]);
+            high_scores.push(document.getElementById("initials").value + " " + score);
+        //	console.log(document.getElementById("initals").value + " " + score);
+        
+            score=0;
+        
+            document.getElementById("game_over").style.display= "none";
+            document.getElementById("high_scores_page").style.display="block";
+        
+            output="";
+            for(let k=0; k<high_scores.length; k++){
+                 output = output + "  " + high_scores[k];
+            }
+        
+            document.getElementById("high_scores").innerHTML= output ;
+             clear_up();
         }
-        i++ 
-        if (i >= questionsArray.length -1) {
-           gameOver();
-        } else {
-            setQuizQuestions();
-        };
-    });
+        
+        function go_home(){	
+                document.getElementById("high_scores_page").style.display= "none";
+                document.getElementById("homeContainer").style.display= "block";
+                clear_up();
+        }
+        
+        function clear_hs(){
+        
+            high_scores.splice(0, high_scores.length);
+        }
+        
+        function clear_up(){
+        
+        time=75;
+        time_remaining=true;
+        time_start= false;
+        i=0;
+        score=0;
+        }
