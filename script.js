@@ -100,32 +100,6 @@ function setQuizQuestions() {
 // Alert/Display message to user stating if theyir answer is correct or incorrect
 // Store user answer choices. Clear elements and update score count.
 
-// if(questionsArray.correctAnswer[question_number])
-
-// answerChoiceA.addEventListener('click', checkAnswer) {
-
-// Highscores page 
-// var highscoresContainer = document.getElementById ("highScoresContainer");
-// var highscoresHeading = document.getElementById ("highscoresHeading");
-
-
-// quizContainer.display.style = "none";
-
-function end_quiz() {
-        document.getElementById("score_keeper").style.display= "block";
-        score_keeper.display.style = "block";
-        highscoresHeading.innerHTML = "Nice work! Your final score is " + score + " points! Head over to the highscores and enter your score and initials!";
-}
-
-// function end_quiz(){
-//     if(setCountdownTimer){
-//         i++;
-//     }
-//     if(i>=5){
-//      end_quiz();
-//     }else{
-//     }
-
 answerChoiceA.addEventListener('click', function(event) {
         event.stopPropagation();
         correctAnswer= questionsArray[i].correctAnswer;
@@ -191,11 +165,11 @@ answerChoiceD.addEventListener('click', function(event) {
     correctAnswer= questionsArray[i].correctAnswer.value;
     console.log(correctAnswer);
     if (3 === correctAnswer) { 
-        console.log("Correct! Nailed it!");
+        alert("Correct! Nailed it!");
         score++;
     } else {
         time_remaining -= 5;
-        console.log("Incorrect! Better luck in the next one!");
+        alert("Incorrect! Better luck in the next one!");
     }
     i++ 
     if (i >= questionsArray.length -1) {
@@ -205,7 +179,6 @@ answerChoiceD.addEventListener('click', function(event) {
     };
 });
 
-        
 // function end_quiz(){
 //     if(setCountdownTimer){
 //         i++;
@@ -225,7 +198,7 @@ answerChoiceD.addEventListener('click', function(event) {
             document.getElementById("end_score").innerHTML= score;
             }
 
-        // localStorage.setItem("score",JSON.stringify(AnswerResponse));
+        localStorage.setItem("score",JSON.stringify(AnswerResponse));
         // localStorage.setItem("name", JSON.stringify(initials));
         
         function view_high_scores(){
@@ -235,7 +208,6 @@ answerChoiceD.addEventListener('click', function(event) {
 
             //submit score and initals
         
-        //	high_scores.push([document.getElementById("initals").value, score]);
             high_scores.push(document.getElementById("initials").value + " " + score);
         //	console.log(document.getElementById("initals").value + " " + score);
         
