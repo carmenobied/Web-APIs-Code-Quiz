@@ -19,9 +19,11 @@ functions - DOM methods - window object - append - timers - event delegation - c
 ```
 
 See animation below which demonstrates the final application functionality:
+
 ![Code Quiz Complete](/assets/Code-Quiz-Demo.gif)
 
 See example below of expected outcome:
+
 ![Code Quiz](/assets/04-web-apis-homework-demo.gif)
 
 ## Key Checks Included ensuring the following:
