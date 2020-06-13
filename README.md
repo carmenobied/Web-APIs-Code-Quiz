@@ -4,6 +4,8 @@ This code quiz involved completing a coding assessment which typically comprises
 
 This multiple-choice timed code quiz is aimed towards coding bootcamp students who want to take a timed quiz on JavaScript fundamentals that stores high scores so that they can gauge their progress compared to their peers.
 
+Access application here: https://carmenobied.github.io/Web-APIs-Code-Quiz/
+
 ## Installation
 ```
 i. Fork the Github repository.
